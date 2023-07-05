@@ -1,55 +1,58 @@
+-- Active: 1688554096358@@127.0.0.1@3306
 
 
 CREATE TABLE
-    authors (
+    users (
         id TEXT PRIMARY KEY NOT NULL UNIQUE,
         name TEXT NOT NULL,
-        username TEXT NOT NULL UNIQUE,
+        nickname TEXT NOT NULL UNIQUE,
         email TEXT NOT NULL UNIQUE,
         password TEXT NOT NULL,
         role text not null DEFAULT "NORMAL",
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP
     );
 
-DROP TABLE authors;
+DROP TABLE users;
 
 INSERT INTO
-    authors(
+    users(
         id,
         name,
-        username,
+        nickname,
         email,
         password,
         role
     )
 VALUES (
         "f001",
-        "VITOR LUIS LEITE",
-        "VITOR-LEITE",
-        "vitor94leite@gmail.com",
-        "PGelVLbc94!pc",
-        "NORMAL"
+        "FULANO",
+        "fulano-bastos",
+        "fulano@email.com",
+        "jzD_yyEcp0M",
+        "BUYER"
     ), (
         "f002",
-        "ROSAURIA SOAREZ",
-        "ROSAURIA-SOAREZ",
-        "rohtop@gmail.com",
-        "laROH!96",
+        "BELTRANO",
+        "beltrano-silva",
+        "beltranosilva@email.com",
+        "m4PlFzASXUc",
         "NORMAL"
     ), (
         "f003",
-        "IAN KALEB MENDONCA",
-        "IAN-MENDONCA",
-        "iankaleb@gmail.com",
-        "kalebinho!pc",
-        "NORMAL"
+        "ERIKA LUISA MENDONCA BOTECHIA DE JESUS LEITE",
+        "erika-botechia",
+        "botechiaeri@gmail.com",
+        "Conway22124748",
+        "ADM"
     );
 
-SELECT * FROM authors WHERE name LIKE '%VITOR%';
+SELECT * FROM users WHERE name LIKE '%BELTRANO%';
+SELECT * FROM users WHERE name LIKE '%ERIKA%';
+SELECT * FROM users WHERE name LIKE '%FULANO%';
 
-SELECT * FROM authors ;
+SELECT * FROM users ;
 
-SELECT id , created_at FROM authors ORDER BY created_at DESC;
+SELECT id , created_at FROM users ORDER BY id DESC;
 
 CREATE TABLE
     tasks (
@@ -89,34 +92,33 @@ VALUES (
 SELECT * FROM tasks;
 
 CREATE TABLE
-    authors_tasks (
-        id_author TEXT NOT NULL,
+    users_tasks (
+        id_users TEXT NOT NULL,
         id_task TEXT NOT NULL,
-        FOREIGN KEY (id_author) REFERENCES authors(id) ON UPDATE CASCADE ON DELETE CASCADE,
+        FOREIGN KEY (id_users) REFERENCES users(id) ON UPDATE CASCADE ON DELETE CASCADE,
         FOREIGN KEY (id_task) REFERENCES tasks(id) ON UPDATE CASCADE ON DELETE CASCADE
     );
 
-SELECT id FROM authors WHERE ASC ;
-
-DROP TABLE authors_tasks;
+SELECT id  FROM tasks ORDER BY id DESC;
+DROP TABLE users_tasks;
 
 SELECT *
-FROM authors
-    LEFT JOIN authors_tasks ON authors_tasks.id_task = authors.id;
+FROM users
+    LEFT JOIN users_tasks ON users_tasks.id_task = users.id;
 
-SELECT * FROM authors_tasks;
+SELECT * FROM users_tasks;
 
 INSERT INTO
-    authors_tasks(id_author, id_task)
+    users_tasks(id_users, id_task)
 VALUES ("f001", "t001"), ("f002", "t002"), ("f003", "t003"), ("f001", "t004"), ("f002", "t004");
 
 SELECT
-    authors.name,
-    authors.email,
-    authors.role,
+    users.name,
+    users.email,
+    users.role,
     tasks.title,
     tasks.description,
     tasks.status
 FROM tasks
-    INNER JOIN authors_tasks ON tasks.id = authors_tasks.id_task
-    INNER JOIN authors ON authors_tasks.id_author = authors.id;
+    INNER JOIN users_tasks ON tasks.id = users_tasks.id_task
+    INNER JOIN users ON users_tasks.id_users = users.id;

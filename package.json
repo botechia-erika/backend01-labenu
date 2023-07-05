@@ -1,22 +1,27 @@
 {
-  "name": "to-do-list",
+  "name": "to-do-list-api",
   "version": "1.0.0",
-  "description": "to-do-list backend",
+  "description": "to-do-list-api backend",
   "main": "index.js",
+
   "scripts": {
-    "start": "tsc ./src/index.ts && node ./build/index.js",
-    "bananinha": "tsc && node ./build/bananinha.js",
+    "node": "node ./src/index.js",
+    "start": "clear && node ./index.js",
+    "cinco": "tsc && node ./build/index.js",
+    "bananinha": "tsc && node ./Labenu/bananinha.js",
     "build": "tsc",
-    "dev": "ts-node-dev src/index.ts"
+    "dev": "ts-node-dev ./src/index.ts",
+    "argumento": "node node-package-json/processArgv.js",
+    "serve": "nodemon ./server/index.js"
   },
   "keywords": [
     "to-do-list"
   ],
   "repository": {
     "type": "GIT",
-    "url": "https://github.com/botechia-erika/to-do-list.git"
+    "url": "https://github.com/erika-botechia/To-Do-List-api.git"
   },
-  "author": "botechia-erika <mendoncabotechia@proton.me>",
+  "author": "erika-botechia <botechiaeri@gmail.com>",
   "license": "ISC",
   "devDependencies": {
     "@types/cors": "^2.8.13",
@@ -31,6 +36,7 @@
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "knex": "^2.4.2",
+    "package": "^1.0.1",
     "sqlite3": "^5.1.6"
   }
 }

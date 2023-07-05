@@ -2,10 +2,10 @@
 export type TPerson = {
     id: string,
     name: string,
-    username: string,
+    nickname: string,
     email: string,
     password: string,
-    role: CATEGORY.ADM | CATEGORY.INSTRUCTOR | CATEGORY.NORMAL | CATEGORY.BUYER
+    role: CATEGORY.ADM | CATEGORY.INSTRUCTOR | CATEGORY.NORMAL | CATEGORY.BUYER | CATEGORY.AUTHOR
 }
 
 export enum CATEGORY {
@@ -53,7 +53,7 @@ type ADM = {
     name: "ERIKA-BOTECHIA",
     product: 8,
     key: "AUTHORIZHATION",
-    AUTHORIZATHION: "CONWAY-ERIKA-BOTECHIA",
+    AUTHORIZATHION: "CONWAY-ERIKA-BOTECHIA" | "COWAY-BOTECHIA-ERIKA",
     LABENUMERO: "22124748",
-    LABEMAIL: "BOTECHIAERI@GMAIL.COM"
+    LABEMAIL: "BOTECHIAERI@GMAIL.COM" | "MENDONCABOTECHIA@PROTON.ME"
 }
